@@ -17,11 +17,14 @@ from pathlib import Path
 
 from rich.console import Console
 from rich.panel import Panel
+from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TimeRemainingColumn
 
 from app.config import get_settings
 from app.ingestion.chunker import chunk_pages
+from app.ingestion.db_insert import insert_chunks, insert_document
 from app.ingestion.models import ExtractionResult
 from app.ingestion.pdf_loader import load_pdf
+from app.llm.ollama_client import get_embedding
 
 console = Console()
 
@@ -73,17 +76,38 @@ def run_ingestion(pdf_path: str) -> None:
     # Step 1: Extract text from PDF
     console.print("\n[bold]Step 1:[/bold] Extracting text from PDF...")
     pages = load_pdf(pdf_path)
-    console.print(f"  ✓ Extracted [green]{len(pages)}[/green] pages")
+    console.print(f"  [green]OK[/green] Extracted [green]{len(pages)}[/green] pages")
 
     # Step 2: Create chunks
     console.print("\n[bold]Step 2:[/bold] Creating chunks...")
     chunks = chunk_pages(pages)
     console.print(
-        f"  ✓ Created [green]{len(chunks)}[/green] chunks "
+        f"  [green]OK[/green] Created [green]{len(chunks)}[/green] chunks "
         f"(skipped {len(pages) - len(chunks)} near-empty pages)"
     )
 
-    # Step 3: Build extraction result
+    # Step 3: Generate embeddings
+    console.print("\n[bold]Step 3:[/bold] Generating embeddings via Ollama...")
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        BarColumn(),
+        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+        TimeRemainingColumn(),
+        console=console,
+    ) as progress:
+        task = progress.add_task("Embedding chunks...", total=len(chunks))
+        
+        for chunk in chunks:
+            try:
+                chunk.embedding = get_embedding(chunk.content)
+            except Exception as e:
+                console.print(f"[yellow]Warning:[/yellow] Failed to embed chunk {chunk.chunk_id}: {e}")
+            progress.advance(task)
+
+    console.print(f"  [green]OK[/green] Generated embeddings for {len([c for c in chunks if c.embedding])} chunks")
+
+    # Build extraction result
     result = ExtractionResult(
         source_file=str(Path(pdf_path).name),
         total_pages=len(pages),
@@ -92,11 +116,21 @@ def run_ingestion(pdf_path: str) -> None:
         chunks=chunks,
     )
 
-    # Step 4: Save to JSON
+    # Step 4: Insert to Supabase
+    console.print("\n[bold]Step 4:[/bold] Inserting to Supabase...")
+    with console.status("[bold green]Inserting to database...") as status:
+        try:
+            doc_uuid = insert_document(result)
+            insert_chunks(doc_uuid, chunks)
+            console.print(f"  [green]OK[/green] Inserted {len(chunks)} chunks into Supabase")
+        except Exception as e:
+            console.print(f"  [red]Failed:[/red] {e}")
+
+    # Step 5: Save to JSON
     output_dir = settings.processed_dir_resolved
-    console.print(f"\n[bold]Step 3:[/bold] Saving results to {output_dir}...")
+    console.print(f"\n[bold]Step 5:[/bold] Saving results to {output_dir}...")
     output_path = save_extraction_result(result, output_dir)
-    console.print(f"  ✓ Saved to [cyan]{output_path}[/cyan]")
+    console.print(f"  [green]OK[/green] Saved to [cyan]{output_path}[/cyan]")
 
     # Summary
     console.print(
@@ -104,18 +138,11 @@ def run_ingestion(pdf_path: str) -> None:
             f"[bold green]Ingestion Complete[/bold green]\n\n"
             f"  Pages extracted : {len(pages)}\n"
             f"  Chunks created  : {len(chunks)}\n"
+            f"  Embeddings      : {len([c for c in chunks if c.embedding])}\n"
             f"  Output file     : {output_path}",
             border_style="green",
         )
     )
-
-    # TODO (Phase 2): Generate embeddings for each chunk
-    # console.print("\n[bold]Step 4:[/bold] Generating embeddings...")
-    # embeddings = generate_embeddings(chunks)
-
-    # TODO (Phase 2): Insert chunks + embeddings into Supabase
-    # console.print("\n[bold]Step 5:[/bold] Inserting into Supabase...")
-    # insert_chunks(chunks, embeddings)
 
 
 def main() -> None:
