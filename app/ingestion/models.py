@@ -1,0 +1,94 @@
+"""Pydantic models for the ingestion pipeline.
+
+Defines structured data types for extracted pages, chunks, and full
+extraction results. These models ensure type safety and make it easy
+to serialize results to JSON for inspection and debugging.
+"""
+
+from __future__ import annotations
+
+from datetime import datetime, timezone
+from typing import Any
+
+from pydantic import BaseModel, Field
+
+
+class PageContent(BaseModel):
+    """Extracted text content from a single PDF page."""
+
+    page_number: int = Field(..., description="1-indexed page number")
+    text: str = Field(..., description="Raw extracted text from the page")
+    char_count: int = Field(0, description="Number of characters in the text")
+
+    def model_post_init(self, __context: Any) -> None:
+        """Auto-compute char_count after initialization."""
+        if self.char_count == 0 and self.text:
+            self.char_count = len(self.text)
+
+
+class Chunk(BaseModel):
+    """A document chunk ready for embedding and storage.
+
+    Represents the smallest unit of content that will be embedded
+    and inserted into Supabase for retrieval.
+    """
+
+    chunk_id: str = Field(..., description="Unique identifier for the chunk")
+    content: str = Field(..., description="Text content of the chunk")
+    content_type: str = Field(
+        default="text",
+        description="Type of content: text, table, formula, figure_ocr",
+    )
+    doc_id: str = Field(
+        default="bki_rules_hull_2026",
+        description="Document identifier",
+    )
+    page_start: int = Field(..., description="Starting page number (1-indexed)")
+    page_end: int = Field(..., description="Ending page number (1-indexed)")
+    section_number: str | None = Field(
+        default=None, description="Section number if detected"
+    )
+    section_title: str | None = Field(
+        default=None, description="Section title if detected"
+    )
+    metadata: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Additional metadata for the chunk",
+    )
+
+    # Placeholder fields for future phases
+    # embedding: list[float] | None = None
+
+
+class ExtractionResult(BaseModel):
+    """Complete result of a PDF extraction run.
+
+    Wraps document metadata, extracted pages, and generated chunks
+    into a single serializable structure for JSON output.
+    """
+
+    doc_id: str = Field(
+        default="bki_rules_hull_2026",
+        description="Document identifier",
+    )
+    title: str = Field(
+        default="BKI Rules for Hull",
+        description="Document title",
+    )
+    edition: str = Field(
+        default="January 2026",
+        description="Document edition",
+    )
+    source_file: str = Field(..., description="Path to source PDF file")
+    total_pages: int = Field(0, description="Total number of pages extracted")
+    total_chunks: int = Field(0, description="Total number of chunks created")
+    extracted_at: str = Field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat(),
+        description="Timestamp of extraction",
+    )
+    pages: list[PageContent] = Field(
+        default_factory=list, description="Extracted page contents"
+    )
+    chunks: list[Chunk] = Field(
+        default_factory=list, description="Generated chunks"
+    )
