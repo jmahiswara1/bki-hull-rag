@@ -32,5 +32,3 @@ Thumbs.db
 # Jupyter
 .ipynb_checkpoints/
 notebooks/*.ipynb
-
-.skills/
