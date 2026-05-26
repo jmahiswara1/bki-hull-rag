@@ -85,6 +85,7 @@ create or replace function match_chunks (
   ) returns table (
     id uuid,
     content text,
+    content_type text,
     section_number text,
     section_title text,
     page_start int,
@@ -92,6 +93,7 @@ create or replace function match_chunks (
   ) language sql stable as $$
 select id,
   content,
+  content_type,
   section_number,
   section_title,
   page_start,
