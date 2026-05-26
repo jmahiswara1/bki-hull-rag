@@ -35,25 +35,42 @@ def chunk_pages(
     chunks: list[Chunk] = []
 
     for page in pages:
-        # Skip pages with too little content
-        if len(page.text.strip()) < min_chars:
-            continue
+        # Table chunks
+        for i, table_md in enumerate(page.tables):
+            chunk_id = f"{doc_id}_p{page.page_number:04d}_t{i}"
+            chunks.append(Chunk(
+                chunk_id=chunk_id,
+                content=f"Table on page {page.page_number}:\n{table_md}",
+                content_type="table",
+                doc_id=doc_id,
+                page_start=page.page_number,
+                page_end=page.page_number,
+            ))
+            
+        # Formula chunks
+        for i, formula in enumerate(page.formulas):
+            chunk_id = f"{doc_id}_p{page.page_number:04d}_f{i}"
+            chunks.append(Chunk(
+                chunk_id=chunk_id,
+                content=f"Formula on page {page.page_number}:\n{formula}",
+                content_type="formula",
+                doc_id=doc_id,
+                page_start=page.page_number,
+                page_end=page.page_number,
+            ))
 
-        chunk_id = f"{doc_id}_p{page.page_number:04d}"
-
-        chunk = Chunk(
-            chunk_id=chunk_id,
-            content=page.text,
-            content_type="text",
-            doc_id=doc_id,
-            page_start=page.page_number,
-            page_end=page.page_number,
-            metadata={
-                "char_count": page.char_count,
-                "source": "page_extraction",
-            },
-        )
-        chunks.append(chunk)
+        # Text chunk (Skip pages with too little content)
+        if len(page.text.strip()) >= min_chars:
+            chunk_id = f"{doc_id}_p{page.page_number:04d}"
+            chunks.append(Chunk(
+                chunk_id=chunk_id,
+                content=page.text,
+                content_type="text",
+                doc_id=doc_id,
+                page_start=page.page_number,
+                page_end=page.page_number,
+                metadata={"char_count": page.char_count, "source": "page_extraction"},
+            ))
 
     return chunks
 

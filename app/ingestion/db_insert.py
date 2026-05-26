@@ -82,8 +82,8 @@ def insert_chunks(document_uuid: str, chunks: list[Chunk]) -> None:
     try:
         client.table("chunks").delete().eq("document_id", document_uuid).execute()
     except APIError as e:
-        # Don't fail the whole process if delete fails, just log it (or ignore for MVP)
-        pass
+        # Don't fail ingestion (idempotency matters), but surface the issue
+        print(f"[warn] failed to delete old chunks for document {document_uuid}: {e}")
 
     # Batch insert configuration
     batch_size = 50

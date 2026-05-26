@@ -11,6 +11,8 @@ from pathlib import Path
 import fitz  # PyMuPDF
 
 from app.ingestion.models import PageContent
+from app.ingestion.formula_extractor import extract_formulas_from_text
+from app.ingestion.table_extractor import extract_table_markdown
 
 
 def load_pdf(pdf_path: str | Path) -> list[PageContent]:
@@ -45,11 +47,15 @@ def load_pdf(pdf_path: str | Path) -> list[PageContent]:
         for page_num in range(len(doc)):
             page = doc[page_num]
             text = page.get_text("text")
+            tables = extract_table_markdown(page)
+            formulas = extract_formulas_from_text(text)
 
             pages.append(
                 PageContent(
                     page_number=page_num + 1,  # 1-indexed
                     text=text.strip(),
+                    tables=tables,
+                    formulas=formulas,
                 )
             )
     finally:

@@ -19,6 +19,8 @@ class PageContent(BaseModel):
     page_number: int = Field(..., description="1-indexed page number")
     text: str = Field(..., description="Raw extracted text from the page")
     char_count: int = Field(0, description="Number of characters in the text")
+    tables: list[str] = Field(default_factory=list, description="Markdown formatted tables extracted from the page")
+    formulas: list[str] = Field(default_factory=list, description="Extracted formulas from the page")
 
     def model_post_init(self, __context: Any) -> None:
         """Auto-compute char_count after initialization."""
