@@ -13,6 +13,7 @@ class SearchResult:
         self,
         chunk_id: str,
         content: str,
+        content_type: str,
         section_number: str | None,
         section_title: str | None,
         page_start: int,
@@ -20,6 +21,7 @@ class SearchResult:
     ):
         self.chunk_id = chunk_id
         self.content = content
+        self.content_type = content_type
         self.section_number = section_number
         self.section_title = section_title
         self.page_start = page_start
@@ -45,32 +47,62 @@ def search_bki(
 
     # 1. Generate embedding for the query
     query_embedding = get_embedding(query_text)
+    
+    # 2. Metadata boost heuristics
+    qt = query_text.lower()
+    boost_table = "table" in qt or "tabel" in qt
+    boost_formula = "formula" in qt or "calculate" in qt or "hitung" in qt or "rumus" in qt
 
-    # 2. Call the Supabase pgvector RPC function
+    # 3. Call the Supabase pgvector RPC function (get more to rerank)
     response = client.rpc(
         "match_chunks",
         {
             "query_embedding": query_embedding,
             "match_threshold": match_threshold,
-            "match_count": match_count,
+            "match_count": match_count * 3, 
         },
     ).execute()
 
     results = []
     if response.data:
         for item in response.data:
+            c_type = item.get("content_type", "text")
+            sim = item.get("similarity", 0.0)
+
+            # Metadata boosting, clamped to 1.0 so the score stays interpretable.
+            if boost_table and c_type == "table":
+                sim = min(1.0, sim + 0.15)
+            if boost_formula and c_type == "formula":
+                sim = min(1.0, sim + 0.15)
+
             results.append(
                 SearchResult(
                     chunk_id=item.get("id"),
                     content=item.get("content", ""),
+                    content_type=c_type,
                     section_number=item.get("section_number"),
                     section_title=item.get("section_title"),
                     page_start=item.get("page_start", 0),
-                    similarity=item.get("similarity", 0.0),
+                    similarity=sim,
                 )
             )
 
-    return results
+    # 4. Sort by boosted similarity and truncate
+    results.sort(key=lambda x: x.similarity, reverse=True)
+    return results[:match_count]
+
+
+def compute_confidence(results: list[SearchResult]) -> float:
+    """Return mean similarity of the top-3 results.
+
+    Simple, transparent confidence proxy: high when several chunks score
+    well, low when only one weak chunk slipped past the threshold.
+    Returns 0.0 for empty input.
+    """
+    if not results:
+        return 0.0
+    top = results[:3]
+    return sum(r.similarity for r in top) / len(top)
 
 
 def format_context(results: list[SearchResult]) -> str:

@@ -29,6 +29,9 @@ class Settings(BaseSettings):
     pdf_path: str = "data/raw/Rules-for-Hull-2026.pdf"
     processed_dir: str = "data/processed"
 
+    # Retrieval guardrails
+    confidence_threshold: float = 0.45
+
     model_config = {
         "env_file": ".env",
         "env_file_encoding": "utf-8",
