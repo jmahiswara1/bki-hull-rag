@@ -1,0 +1,303 @@
+{
+  "version": "1",
+  "created_at": "2026-05-26",
+  "items": [
+    {
+      "id": "def-01",
+      "category": "definition",
+      "question": "What must a master do when curves or tables of minimum operational metacentric height GM' or maximum allowable KG versus draught are not provided according to rule 2.6?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 680,
+      "expected_chunk_id": "bki_rules_hull_2026_p0680",
+      "expected_answer_summary": "The master should ensure that the operating condition does not deviate from a studied loading condition, or verify by calculation that the stability criteria are satisfied for this loading condition.",
+      "judge_criteria": "The answer must include both actions: ensuring no deviation from studied conditions and verifying stability criteria through calculation."
+    },
+    {
+      "id": "def-02",
+      "category": "definition",
+      "question": "What is the minimum load on a strength deck treated as a weather deck or a forecastle deck, expressed in terms of p0 and f?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 122,
+      "expected_chunk_id": "bki_rules_hull_2026_p0122",
+      "expected_answer_summary": "The minimum load [kN/m2] on such decks is max [16 · f; 0.7 · p0].",
+      "judge_criteria": "The answer must specify the formula for calculating the minimum load as the maximum value between 16 times the probability factor (f) and 0.7 times p0."
+    },
+    {
+      "id": "def-03",
+      "category": "definition",
+      "question": "What is the minimum nominal upper yield point (ReH) for normal strength hull structural steel according to the document?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 31,
+      "expected_chunk_id": "bki_rules_hull_2026_p0031",
+      "expected_answer_summary": "The minimum nominal upper yield point (ReH) for normal strength hull structural steel is 235 N/mm2.",
+      "judge_criteria": "The answer must specify the exact value of 235 N/mm2 as stated in the chunk."
+    },
+    {
+      "id": "def-04",
+      "category": "definition",
+      "question": "What is the formula for calculating the maximum moment, MCR, in the case where pressure is applied only on the rudder area below the middle of the neck bearing?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 293,
+      "expected_chunk_id": "bki_rules_hull_2026_p0293",
+      "expected_answer_summary": "MCR2 = CR2 · ℓ10 · (2 · x1 + x2) / [3 · (x1 + x2)]",
+      "judge_criteria": "The answer must include the formula for MCR2 with all variables correctly specified."
+    },
+    {
+      "id": "def-05",
+      "category": "definition",
+      "question": "What is the minimum plate thickness required for tank boundaries carrying normal and shear stresses due to longitudinal hull girder bending according to the given chunk?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 262,
+      "expected_chunk_id": "bki_rules_hull_2026_p0262",
+      "expected_answer_summary": "t = 16.8 · nf · a · r p σpℓ + tk [mm]",
+      "judge_criteria": "The answer must include the formula with all variables as presented in the chunk."
+    },
+    {
+      "id": "def-06",
+      "category": "definition",
+      "question": "What condition must be met by the side transverse web frames to withstand a load Pf according to Rule 5.5?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 240,
+      "expected_chunk_id": "bki_rules_hull_2026_p0240",
+      "expected_answer_summary": "Pf ≤ Pfu, where Pfu = t²s · √(ReH · [C + 0.27])",
+      "judge_criteria": "The answer must include the formula for calculating Pfu with correct variables and coefficients."
+    },
+    {
+      "id": "tbl-01",
+      "category": "table",
+      "question": "What is the formula for calculating I_sv in centimeters to the fourth power as given in the table?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 107,
+      "expected_chunk_id": "bki_rules_hull_2026_p0107_t0",
+      "expected_answer_summary": "'I sv = 3/10^4 (b f t3 f + d w t3 w)'",
+      "judge_criteria": "The answer must include the correct formula for I_sv with the specified units."
+    },
+    {
+      "id": "tbl-02",
+      "category": "table",
+      "question": "What is the maximum value for 'c 1' in plate panel SP-A according to the table on page 89?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 89,
+      "expected_chunk_id": "bki_rules_hull_2026_p0089_t1",
+      "expected_answer_summary": "max 1 - α",
+      "judge_criteria": "The answer must specify the exact numerical and symbolic representation given in the chunk."
+    },
+    {
+      "id": "tbl-03",
+      "category": "table",
+      "question": "What is the formula for calculating the value of C for brackets without edge stiffener, given a specific range of d/b and ℓ/b ratios?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 64,
+      "expected_chunk_id": "bki_rules_hull_2026_p0064_t0",
+      "expected_answer_summary": "C = 20 · (d/b) + 16 · (ℓ/b) with 0.25 ≤ d/b ≤ 1",
+      "judge_criteria": "The answer must include the formula and the specified range for d/b and ℓ/b."
+    },
+    {
+      "id": "tbl-04",
+      "category": "table",
+      "question": "What is the fire resistance rating for accommodation spaces of greater fire risk located on open deck spaces according to this table?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 490,
+      "expected_chunk_id": "bki_rules_hull_2026_p0490_t0",
+      "expected_answer_summary": "A-0",
+      "judge_criteria": "The answer must specify the fire resistance rating (A-0) for accommodation spaces of greater fire risk in open deck spaces."
+    },
+    {
+      "id": "tbl-05",
+      "category": "table",
+      "question": "What is the material grade for the lower bracket of ordinary side frames located up to 0,125 ℓabove the intersection with the bilge hopper sloping plate or inner bottom plate?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 36,
+      "expected_chunk_id": "bki_rules_hull_2026_p0036_t1",
+      "expected_answer_summary": "Grade D/DH",
+      "judge_criteria": "The answer must specify Grade D/DH as the material grade for the described structural member category."
+    },
+    {
+      "id": "tbl-06",
+      "category": "table",
+      "question": "What is the minimum breadth required for single strakes within 0.4L amidships according to the table on page 36?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 36,
+      "expected_chunk_id": "bki_rules_hull_2026_p0036_t0",
+      "expected_answer_summary": "800 + 5L mm",
+      "judge_criteria": "The answer must specify the exact minimum breadth in millimeters as stated in the chunk."
+    },
+    {
+      "id": "frm-01",
+      "category": "formula",
+      "question": "What is the value of K according to the formula provided in the document?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 95,
+      "expected_chunk_id": "bki_rules_hull_2026_p0095_f0",
+      "expected_answer_summary": "K = 3",
+      "judge_criteria": "The answer must correctly calculate the sum of 1 and 2."
+    },
+    {
+      "id": "frm-02",
+      "category": "formula",
+      "question": "What does the variable PL represent in this formula for calculating lightship weight?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 149,
+      "expected_chunk_id": "bki_rules_hull_2026_p0149_f0",
+      "expected_answer_summary": "PL represents the lightship weight.",
+      "judge_criteria": "The answer must identify that PL stands for lightship weight."
+    },
+    {
+      "id": "frm-03",
+      "category": "formula",
+      "question": "What does the variable 'zNA,e' represent in the given formula?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 151,
+      "expected_chunk_id": "bki_rules_hull_2026_p0151_f2",
+      "expected_answer_summary": "'zNA,e' represents the z-coordinate of the elastic neutral axis for the ship's transverse section.",
+      "judge_criteria": "The answer must include the definition of 'zNA,e' as the z-coordinate of the elastic neutral axis."
+    },
+    {
+      "id": "frm-04",
+      "category": "formula",
+      "question": "What does the variable CR represent in the given formula for full rudder force?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 291,
+      "expected_chunk_id": "bki_rules_hull_2026_p0291_f0",
+      "expected_answer_summary": "CR represents the full rudder force.",
+      "judge_criteria": "The answer must correctly identify CR as representing the full rudder force."
+    },
+    {
+      "id": "frm-05",
+      "category": "formula",
+      "question": "What does ReH represent in this formula according to the given chunk?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 404,
+      "expected_chunk_id": "bki_rules_hull_2026_p0404_f0",
+      "expected_answer_summary": "ReH represents the nominal upper yield point of the material used.",
+      "judge_criteria": "The answer must correctly identify ReH as representing the nominal upper yield point of the material used."
+    },
+    {
+      "id": "frm-06",
+      "category": "formula",
+      "question": "What specific measurement is represented by 'length' in the formula mentioned on page 72?",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 72,
+      "expected_chunk_id": "bki_rules_hull_2026_p0072_f1",
+      "expected_answer_summary": "The length defined in item 4).",
+      "judge_criteria": "The answer must specify that the length refers to a definition given in item 4 of the document."
+    },
+    {
+      "id": "calc-01",
+      "category": "calculation",
+      "question": "Calculate fR for c=1.0",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 445,
+      "expected_chunk_id": "bki_rules_hull_2026_p0445_f2",
+      "expected_numeric_result": 3.0,
+      "tolerance_pct": 1.0,
+      "input_variables": {
+        "c": 1.0
+      },
+      "expected_answer_summary": "Result of 1 + 2 · 1.0 with the given inputs."
+    },
+    {
+      "id": "calc-02",
+      "category": "calculation",
+      "question": "Calculate hydrostatic pressure ph for h=4.0.",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 180,
+      "expected_chunk_id": "bki_rules_hull_2026_p0180_f0",
+      "expected_numeric_result": 40.0,
+      "tolerance_pct": 1.0,
+      "input_variables": {
+        "h": 4.0
+      },
+      "expected_answer_summary": "Result of 10 · 4.0 with the given inputs."
+    },
+    {
+      "id": "calc-03",
+      "category": "calculation",
+      "question": "Calculate b for b=1.0 mm",
+      "language": "en",
+      "expected_section": null,
+      "expected_page": 84,
+      "expected_chunk_id": "bki_rules_hull_2026_p0084_f2",
+      "expected_numeric_result": 1.0,
+      "tolerance_pct": 1.0,
+      "input_variables": {
+        "b": 1.0
+      },
+      "expected_answer_summary": "Result of b with the given input."
+    },
+    {
+      "id": "id-01",
+      "category": "bilingual_id",
+      "question": "Untuk kapal penumpang, di mana posisi gland stern harus ditempatkan untuk menghindari penggenangan dasar plongkap oleh air yang menyembur melalui gland stern?",
+      "language": "id",
+      "expected_section": null,
+      "expected_page": 250,
+      "expected_chunk_id": "bki_rules_hull_2026_p0250",
+      "expected_answer_summary": "Gland stern harus ditempatkan dalam shaft tunnel atau ruang watertight lainnya yang terpisah dari kompartemen tubuh ekor dan memiliki volume sedemikian rupa sehingga dasar plongkap tidak akan tenggelam jika terjadi kerusakan pada gland stern.",
+      "judge_criteria": "Jawaban harus menyebutkan posisi gland stern, ruang watertight yang memisahkan, dan kriteria untuk mencegah tenggelamnya dasar plongkap."
+    },
+    {
+      "id": "id-02",
+      "category": "bilingual_id",
+      "question": "Bagaimana cara menghitung tekanan serong (shear stress) dalam proses perancangan struktur perahu menurut aturan yang dinyatakan?",
+      "language": "id",
+      "expected_section": null,
+      "expected_page": 111,
+      "expected_chunk_id": "bki_rules_hull_2026_p0111",
+      "expected_answer_summary": "Tekanan serong (τ) dihitung dengan rata-rata berbobot, dan diberikan oleh τ = Σ(Aiτi)/Ai untuk σy > 0.",
+      "judge_criteria": "Jawaban harus menyebutkan bahwa tekanan serong dihitung dengan rata-rata berbobot dan memiliki rumus yang ditentukan."
+    },
+    {
+      "id": "id-03",
+      "category": "bilingual_id",
+      "question": "Bagaimana penentuan titik pemasangan guyline pada bollard dan bitts menurut aturan ini?",
+      "language": "id",
+      "expected_section": null,
+      "expected_page": 404,
+      "expected_chunk_id": "bki_rules_hull_2026_p0404",
+      "expected_answer_summary": "Titik pemasangan guyline harus tidak kurang dari 4/5 tinggi pipa di atas dasar.",
+      "judge_criteria": "答案必须包含关于牵引索在甲板设备上的固定点的具体高度要求。"
+    },
+    {
+      "id": "oos-01",
+      "category": "out_of_scope",
+      "question": "Siapa presiden Indonesia saat ini?",
+      "language": "id",
+      "expected_refusal": true
+    },
+    {
+      "id": "oos-02",
+      "category": "out_of_scope",
+      "question": "What is the recipe for nasi goreng?",
+      "language": "en",
+      "expected_refusal": true
+    },
+    {
+      "id": "oos-03",
+      "category": "out_of_scope",
+      "question": "Bagaimana cara mengganti oli mesin mobil?",
+      "language": "id",
+      "expected_refusal": true
+    }
+  ]
+}

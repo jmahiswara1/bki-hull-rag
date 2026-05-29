@@ -1,0 +1,208 @@
+{
+  "test_set_version": "1",
+  "test_set_size": 5,
+  "started_at": "2026-05-26T06:33:09.718414+00:00",
+  "finished_at": "2026-05-26T06:33:09Z",
+  "citation_accuracy": 0.2,
+  "calc_correctness": 0.0,
+  "refusal_accuracy": 0.0,
+  "recall_at_5": 0.6,
+  "judge_avg_score": 0.0,
+  "by_category": [
+    {
+      "category": "definition",
+      "total": 5,
+      "citation_correct": 1,
+      "calc_correct": 0,
+      "refusal_correct": 0,
+      "recall_at_5": 3,
+      "judge_scores": []
+    }
+  ],
+  "results": [
+    {
+      "item_id": "def-01",
+      "category": "definition",
+      "question": "What must a master do when curves or tables of minimum operational metacentric height GM' or maximum allowable KG versus draught are not provided according to rule 2.6?",
+      "answer": "According to Rule 2.6 in the given sources, if curves or tables of minimum operational metacentric height (GM') or maximum allowable KG versus draught are not provided, the master must:\n\n1. Ensure that the ship is operated within safe limits at all times.\n2. Follow the guidance provided in Chapter I-1, Section 3.6 and Rule B.4.27 of the International Load Line Convention.\n3. Use other appropriate methods or consult with classification society rules to determine safe operating conditions.\n\nSpecifically, Rule 2.6 states:\n\n\"If curves or tables of minimum operational metacentric height GM' or maximum allowable KG versus draught are not provided in this rule, the master must ensure that the ship is operated within safe limits at all times.\"\n\nThis means the master should take necessary steps to maintain safety even when formal GM curves or KG vs. Draught tables are not available, potentially using alternative methods or consulting relevant rules and guidance.",
+      "error": null,
+      "retrieved_chunk_ids": [
+        "c0311a7a-6ad8-495f-91e8-0ea19feb5ee4",
+        "4a89dc3f-7809-4da8-bdad-f173696d3d6e",
+        "f0093f0d-1c13-4585-b031-9c998479b9bd",
+        "50488e61-6024-42cb-8565-af3ad7168d9a",
+        "97e65a6b-fa8d-4bd5-b574-96446952d9b5",
+        "3b324ad4-9fc0-4e9f-9d45-c9490c6be325",
+        "6fdb05d0-9c4d-44a6-8d5b-3653fb6ed8d8",
+        "77106c01-f7e1-4cd4-8cf6-4b2771988f22"
+      ],
+      "retrieved_pages": [
+        370,
+        551,
+        342,
+        408,
+        33,
+        35,
+        335,
+        39
+      ],
+      "citation_correct": false,
+      "calc_correct": null,
+      "refusal_correct": null,
+      "recall_at_5": false,
+      "judge_score": null,
+      "judge_reasoning": null,
+      "numeric_actual": null,
+      "numeric_expected": null,
+      "duration_seconds": 58.63903089999803
+    },
+    {
+      "item_id": "def-02",
+      "category": "definition",
+      "question": "What is the minimum load on a strength deck treated as a weather deck or a forecastle deck, expressed in terms of p0 and f?",
+      "answer": "Based on the information provided in the sources, the minimum load on a strength deck treated as a weather deck or a forecastle deck can be determined using the expression:\n\npD = 0\n\nHowever, this is given with respect to the maximum and minimum loads. For the minimum load specifically, it should be expressed considering the factors f and p0.\n\nFrom Section 4, B.1 of one of the sources (likely Source 7 or Source 8 based on the context):\n\n\"Maximum and minimum load are to be so determined that the largest applied stress range (∆σ) as per Fig. 20.1 at conservative mean stress is obtained having due regard to the sign (plus, minus). For fF, fQ see Section 5, D.1.\"\n\nAnd from Section 5, D.1:\n\n\"fF, fQ see here for determination of a0 and further calculation of ax and ay\"\n\nFurther, in one of the sections discussing load calculations (likely Source 7 or Source 8):\n\n\"2) With probability factor f for calculation p0 according to Section 4, A.3: however f = 1,0 for stiffeners if no other cyclic load components are considered.\"\n\nGiven that typically a strength deck treated as a weather deck would be subjected to minimum loading conditions, the minimum load (pD) can be expressed in terms of p0 and f as:\n\npD = p0 * f\n\nWhere:\n- p0 is the basic load value\n- f is the probability factor (given as 1.0 for stiffeners if no other cyclic load components are considered)\n\nSo, the minimum load on a strength deck treated as a weather deck or forecastle deck would be:\n\npD = p0 * 1.0 = p0\n\nThis indicates that the minimum load in terms of p0 is simply p0 itself when f is equal to 1.0.",
+      "error": null,
+      "retrieved_chunk_ids": [
+        "320b2a4d-e1ff-4adc-bdad-a9b1a75ee5fc",
+        "1f1b91db-ea32-41de-8919-1adfddec9c37",
+        "291cc6a3-ddc6-43ec-9ab7-5630df912a8f",
+        "53ff3256-67a4-4d53-b22a-62ea645235a7",
+        "8009afcd-6bcd-4717-add1-8e0fc761c77a",
+        "d2d38979-5562-40c8-b866-bd08a5be4411",
+        "f0093f0d-1c13-4585-b031-9c998479b9bd",
+        "50dcd72f-21da-4a34-b95e-27bb7d0bf0f9"
+      ],
+      "retrieved_pages": [
+        440,
+        201,
+        649,
+        122,
+        205,
+        440,
+        342,
+        126
+      ],
+      "citation_correct": false,
+      "calc_correct": null,
+      "refusal_correct": null,
+      "recall_at_5": true,
+      "judge_score": null,
+      "judge_reasoning": null,
+      "numeric_actual": null,
+      "numeric_expected": null,
+      "duration_seconds": 73.78268160000152
+    },
+    {
+      "item_id": "def-03",
+      "category": "definition",
+      "question": "What is the minimum nominal upper yield point (ReH) for normal strength hull structural steel according to the document?",
+      "answer": "Menurut dokumen BKI Rules for Hull, nilai minimum nominal upper yield point (ReH) untuk baja struktural kapal normal adalah 235 N/mm2.\n\nSources:\n- Section -: B.2 Hull Structural Steel for Plates and Sections, page 41",
+      "error": null,
+      "retrieved_chunk_ids": [
+        "03102d40-7e5e-452e-a37d-78ee8b1c06ff",
+        "569cd16e-8015-4da7-a266-287f933856a3",
+        "d81a0261-ae9b-4df6-8934-ddf41ce67104",
+        "1ac0e3fc-1e87-427e-b6a3-955e29eb3775",
+        "4edb18b2-ab05-4110-b5b6-81e20385478a",
+        "64a64b6b-a872-4544-a551-4b218eb9595e",
+        "71150355-df29-45bd-b889-17246b971805",
+        "582e890d-6cd0-401b-9f97-5f88eb778442"
+      ],
+      "retrieved_pages": [
+        575,
+        151,
+        724,
+        41,
+        411,
+        397,
+        116,
+        31
+      ],
+      "citation_correct": false,
+      "calc_correct": null,
+      "refusal_correct": null,
+      "recall_at_5": false,
+      "judge_score": null,
+      "judge_reasoning": null,
+      "numeric_actual": null,
+      "numeric_expected": null,
+      "duration_seconds": 37.7214770999999
+    },
+    {
+      "item_id": "def-04",
+      "category": "definition",
+      "question": "What is the formula for calculating the maximum moment, MCR, in the case where pressure is applied only on the rudder area below the middle of the neck bearing?",
+      "answer": "MCR2 = CR2 · ℓ10 · (2 · x1 + x2)\n3 · (x1 + x2) [Nm]\n\nSources:\n- Section -: Rudder and Manoeuvring Arrangement | Page 293",
+      "error": null,
+      "retrieved_chunk_ids": [
+        "26c0d20b-ad70-44d2-a330-d20e6d73fe08",
+        "b8e2193f-25a1-4db6-830a-1d3be454e318",
+        "e099ee48-3abb-4dfd-b6dd-9d4fc9399975",
+        "e7ca4dff-eb2a-4e66-9010-678a942b8dac",
+        "1444ff01-932e-48e7-99b9-33ad32df8164",
+        "7ec36d69-cd7f-4b80-8910-da7680e6f83f",
+        "0fda4ab7-8542-4e9f-b00c-5900774a119a",
+        "f0fbaef5-f7e6-40ff-b7f4-927c0983c3a4"
+      ],
+      "retrieved_pages": [
+        291,
+        289,
+        160,
+        160,
+        293,
+        292,
+        300,
+        282
+      ],
+      "citation_correct": true,
+      "calc_correct": null,
+      "refusal_correct": null,
+      "recall_at_5": true,
+      "judge_score": null,
+      "judge_reasoning": null,
+      "numeric_actual": null,
+      "numeric_expected": null,
+      "duration_seconds": 33.88410960001056
+    },
+    {
+      "item_id": "def-05",
+      "category": "definition",
+      "question": "What is the minimum plate thickness required for tank boundaries carrying normal and shear stresses due to longitudinal hull girder bending according to the given chunk?",
+      "answer": "According to the given text, the minimum plate thickness required for tank boundaries carrying normal and shear stresses due to longitudinal hull girder bending is:\n\nt = 16 mm in general\n\nFor bulk carriers, see Section 23, B.5.3.\nFor tankers, see Section 24, A.12.\n\nThis value of 16 mm appears to be a general minimum thickness requirement for these types of structures, though specific sections are referenced for more detailed requirements for bulk carriers and tankers.",
+      "error": null,
+      "retrieved_chunk_ids": [
+        "d2d92da4-c7d2-4c35-b6bf-d8c194fef4c9",
+        "6c5150b5-8614-40f4-bfa8-d012d862ea3a",
+        "78b3dcba-55c8-4601-bffd-31314cce4d8a",
+        "e7ca4dff-eb2a-4e66-9010-678a942b8dac",
+        "a7230588-6d4d-44ef-ae30-f32e3a94518a",
+        "6870e303-a14d-455a-8500-32077b45e7c2",
+        "e92b1bf5-a26a-453f-a42d-23beb04df7d1",
+        "03102d40-7e5e-452e-a37d-78ee8b1c06ff"
+      ],
+      "retrieved_pages": [
+        262,
+        604,
+        264,
+        160,
+        263,
+        216,
+        169,
+        575
+      ],
+      "citation_correct": false,
+      "calc_correct": null,
+      "refusal_correct": null,
+      "recall_at_5": true,
+      "judge_score": null,
+      "judge_reasoning": null,
+      "numeric_actual": null,
+      "numeric_expected": null,
+      "duration_seconds": 35.01569479999307
+    }
+  ],
+  "metadata": {
+    "judge_enabled": false,
+    "limit": 5
+  }
+}
