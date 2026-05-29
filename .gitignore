@@ -24,6 +24,7 @@ env/
 # Data
 data/raw/*.pdf
 data/processed/
+data/eval/results/
 
 # OS
 .DS_Store
