@@ -71,6 +71,19 @@ create table if not exists calculation_logs (
     result jsonb default '{}'::jsonb,
     created_at timestamptz default now()
 );
+-- 7. eval_runs — aggregate metrics per evaluation run
+create table if not exists eval_runs (
+  id uuid primary key default gen_random_uuid(),
+  test_set_version text not null,
+  test_set_size int not null,
+  citation_accuracy float,
+  calc_correctness float,
+  refusal_accuracy float,
+  recall_at_5 float,
+  judge_avg_score float,
+  metadata jsonb default '{}'::jsonb,
+  created_at timestamptz default now()
+);
 -- Indexes for common query patterns
 create index if not exists idx_chunks_document_id on chunks(document_id);
 create index if not exists idx_chunks_content_type on chunks(content_type);

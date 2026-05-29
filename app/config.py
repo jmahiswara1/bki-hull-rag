@@ -25,12 +25,15 @@ class Settings(BaseSettings):
     light_model: str = "qwen2.5:3b"
     embedding_model: str = "bge-m3"
 
+    # LLM-as-judge model for the eval harness; falls back to main_model if unset.
+    judge_model: str = "qwen2.5:7b"
+
     # Data paths
     pdf_path: str = "data/raw/Rules-for-Hull-2026.pdf"
     processed_dir: str = "data/processed"
 
     # Retrieval guardrails
-    confidence_threshold: float = 0.45
+    confidence_threshold: float = 0.65
 
     model_config = {
         "env_file": ".env",

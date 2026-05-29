@@ -20,6 +20,8 @@ def normalize_formula(f_str: str) -> str:
     # Replace common typography
     f_str = f_str.replace("²", "**2").replace("³", "**3")
     f_str = f_str.replace("^", "**")
+    # Unicode multiplication signs → "*"
+    f_str = f_str.replace("·", "*").replace("×", "*").replace("⋅", "*")
 
     # If the formula is an equation (e.g. "t = 1.2 * L"), extract the RHS
     if "=" in f_str:
